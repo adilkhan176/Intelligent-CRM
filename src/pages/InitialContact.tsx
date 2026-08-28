@@ -1,15 +1,18 @@
 import { useMemo, useState } from "react";
-import { UserPlus, PhoneCall, Clock, TrendingUp } from "lucide-react";
+import { UserPlus, PhoneCall, Clock, TrendingUp, Plus } from "lucide-react";
 import { useCrm } from "../context/CrmContext";
 import { PageHeader } from "../components/PageHeader";
 import { StatTile } from "../components/StatTile";
+import { StatRow } from "../components/StatRow";
 import { LeadTable } from "../components/LeadTable";
 import { LeadDetail } from "../components/LeadDetail";
+import { LeadFormModal } from "../components/LeadFormModal";
 import { formatDate } from "../lib/format";
 
 export default function InitialContact() {
   const { leads, setStage, addActivity } = useCrm();
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [showForm, setShowForm] = useState(false);
   const selected = leads.find((l) => l.id === selectedId) ?? null;
 
   const newLeads = useMemo(() => leads.filter((l) => l.stage === "new").sort((a, b) => a.createdAt.localeCompare(b.createdAt)), [leads]);
@@ -33,14 +36,23 @@ export default function InitialContact() {
       <PageHeader
         title="Initial Contact"
         subtitle="New leads waiting for first outreach, and leads you've just reached"
+        actions={
+          <button
+            onClick={() => setShowForm(true)}
+            className="flex items-center gap-1.5 rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-white hover:opacity-90"
+          >
+            <Plus size={15} />
+            New Contact
+          </button>
+        }
       />
-      <div className="px-8 pb-10">
-        <div className="grid grid-cols-4 gap-4 mb-6">
+      <div className="px-4 sm:px-6 md:px-8 pb-10">
+        <StatRow>
           <StatTile label="New Leads" value={String(stats.totalNew)} icon={UserPlus} sub="awaiting first contact" />
           <StatTile label="Recently Contacted" value={String(stats.totalContacted)} icon={PhoneCall} sub="in initial contact stage" />
           <StatTile label="Avg. Response Time" value="1.4 days" icon={Clock} sub="lead created to first touch" />
           <StatTile label="Intake Conversion" value={`${Math.round(stats.conversionRate)}%`} icon={TrendingUp} sub="advance past new" />
-        </div>
+        </StatRow>
 
         <div className="mb-3 flex items-center justify-between">
           <div className="text-xs font-semibold text-ink-muted uppercase tracking-wide">Awaiting First Contact</div>
@@ -89,6 +101,10 @@ export default function InitialContact() {
             ) : null
           }
         />
+      )}
+
+      {showForm && (
+        <LeadFormModal mode="contact" onClose={() => setShowForm(false)} onCreated={(id) => setSelectedId(id)} />
       )}
     </div>
   );

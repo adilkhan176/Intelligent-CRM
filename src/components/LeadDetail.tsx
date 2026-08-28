@@ -16,9 +16,9 @@ const ACTIVITY_ICON: Record<ActivityType, string> = {
 
 function InfoRow({ icon, children }: { icon: ReactNode; children: ReactNode }) {
   return (
-    <div className="flex items-center gap-2 text-sm text-ink-secondary">
-      <span className="text-ink-muted">{icon}</span>
-      {children}
+    <div className="flex items-center gap-2 text-sm text-ink-secondary min-w-0">
+      <span className="text-ink-muted shrink-0">{icon}</span>
+      <span className="truncate">{children}</span>
     </div>
   );
 }
@@ -53,7 +53,7 @@ export function LeadDetail({
         <span className="text-lg font-semibold text-ink tabular-nums">{formatCurrency(lead.estValue)}</span>
       </div>
 
-      <div className="grid grid-cols-2 gap-x-4 gap-y-2 mb-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 mb-4">
         <InfoRow icon={<User size={14} />}>{lead.contactName}</InfoRow>
         <InfoRow icon={<Briefcase size={14} />}>{lead.projectType}</InfoRow>
         <InfoRow icon={<Mail size={14} />}>

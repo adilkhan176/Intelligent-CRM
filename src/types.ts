@@ -31,6 +31,26 @@ export type Source =
   | "Google Ads"
   | "Dribbble/Portfolio";
 
+export const PROJECT_TYPES: ProjectType[] = [
+  "Web App Design",
+  "Website Redesign",
+  "E-commerce Site",
+  "Marketing Site",
+  "Product/SaaS UI",
+  "Branding + Web",
+];
+
+export const SOURCES: Source[] = [
+  "Referral",
+  "Website Inquiry",
+  "LinkedIn",
+  "Cold Outreach",
+  "Google Ads",
+  "Dribbble/Portfolio",
+];
+
+export const TEAM_MEMBERS = ["You", "Jordan Reyes", "Priya Anand", "Sam Whitaker", "Casey Nguyen"];
+
 export type ActivityType = "call" | "email" | "meeting" | "note" | "system";
 
 export interface Activity {

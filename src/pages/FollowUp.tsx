@@ -3,6 +3,7 @@ import { PhoneCall, AlertTriangle, CalendarClock, Target } from "lucide-react";
 import { useCrm } from "../context/CrmContext";
 import { PageHeader } from "../components/PageHeader";
 import { StatTile } from "../components/StatTile";
+import { StatRow } from "../components/StatRow";
 import { LeadTable } from "../components/LeadTable";
 import { LeadDetail } from "../components/LeadDetail";
 import { relativeDays } from "../lib/format";
@@ -46,8 +47,8 @@ export default function FollowUp() {
   return (
     <div>
       <PageHeader title="Follow-Up" subtitle="Leads in active nurture — keep the conversation moving" />
-      <div className="px-8 pb-10">
-        <div className="grid grid-cols-4 gap-4 mb-6">
+      <div className="px-4 sm:px-6 md:px-8 pb-10">
+        <StatRow>
           <StatTile label="In Follow-Up" value={String(stats.total)} icon={PhoneCall} sub="active leads" />
           <StatTile
             label="Overdue"
@@ -57,7 +58,7 @@ export default function FollowUp() {
           />
           <StatTile label="Due This Week" value={String(stats.dueThisWeek)} icon={CalendarClock} sub="upcoming touchpoints" />
           <StatTile label="Avg. Time in Stage" value={`${stats.avgAge}d`} icon={Target} sub="since lead created" />
-        </div>
+        </StatRow>
 
         <LeadTable
           leads={followups}

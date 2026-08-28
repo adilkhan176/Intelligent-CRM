@@ -1,4 +1,5 @@
-import type { Activity, ActivityType, Lead, ProjectType, Source, Stage } from "../types";
+import { PROJECT_TYPES, SOURCES, TEAM_MEMBERS, type Activity, type ActivityType, type Lead, type Stage } from "../types";
+import { genId } from "../lib/id";
 
 // Deterministic PRNG so demo data is stable across reloads.
 function mulberry32(seed: number) {
@@ -46,15 +47,9 @@ const lastNames = [
   "Osei", "Larkin", "Duarte", "Voss", "Amaro",
 ];
 
-const projectTypes: ProjectType[] = [
-  "Web App Design", "Website Redesign", "E-commerce Site", "Marketing Site",
-  "Product/SaaS UI", "Branding + Web",
-];
-const sources: Source[] = [
-  "Referral", "Website Inquiry", "LinkedIn", "Cold Outreach", "Google Ads",
-  "Dribbble/Portfolio",
-];
-const team = ["Jordan Reyes", "Priya Anand", "Sam Whitaker", "Casey Nguyen"];
+const projectTypes = PROJECT_TYPES;
+const sources = SOURCES;
+const team = TEAM_MEMBERS.filter((m) => m !== "You");
 
 const lossReasons = [
   "Went with a lower-cost competitor",
@@ -70,7 +65,7 @@ function makeCompany() {
 
 function makeActivity(type: ActivityType, text: string, date: Date): Activity {
   return {
-    id: crypto.randomUUID(),
+    id: genId(),
     date: iso(date),
     type,
     text,

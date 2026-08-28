@@ -17,6 +17,7 @@ import { DollarSign, Percent, Target, TrendingUp } from "lucide-react";
 import { useCrm } from "../context/CrmContext";
 import { PageHeader } from "../components/PageHeader";
 import { StatTile } from "../components/StatTile";
+import { StatRow } from "../components/StatRow";
 import { formatCompact, formatCurrency } from "../lib/format";
 import type { Lead } from "../types";
 
@@ -124,15 +125,15 @@ export default function Analytics() {
   return (
     <div>
       <PageHeader title="Analytics" subtitle="Pipeline performance and conversion trends" />
-      <div className="px-8 pb-12">
-        <div className="grid grid-cols-4 gap-4 mb-6">
+      <div className="px-4 sm:px-6 md:px-8 pb-12">
+        <StatRow>
           <StatTile label="Open Pipeline Value" value={formatCurrency(kpis.pipelineValue)} icon={DollarSign} sub={`${kpis.openCount} active leads`} />
           <StatTile label="Win Rate" value={`${Math.round(kpis.winRate)}%`} icon={Percent} sub="all-time" />
           <StatTile label="Avg. Deal Size" value={formatCurrency(kpis.avgDeal)} icon={TrendingUp} sub="won deals" />
           <StatTile label="Active Opportunities" value={String(leads.filter((l) => l.stage === "opportunity").length)} icon={Target} sub="in proposal" />
-        </div>
+        </StatRow>
 
-        <div className="grid grid-cols-2 gap-6 mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           <div className="rounded-xl border border-hairline bg-surface-1 p-4">
             <div className="text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1">Pipeline Funnel</div>
             <div className="text-[11px] text-ink-muted mb-3">Current leads by stage</div>
@@ -179,8 +180,8 @@ export default function Analytics() {
               <AreaChart data={revenueData} margin={{ left: 0, right: 8, top: 4, bottom: 4 }}>
                 <defs>
                   <linearGradient id="revFill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="var(--series-1)" stopOpacity={0.25} />
-                    <stop offset="100%" stopColor="var(--series-1)" stopOpacity={0} />
+                    <stop offset="0%" stopColor="var(--series-7)" stopOpacity={0.3} />
+                    <stop offset="100%" stopColor="var(--series-7)" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid vertical={false} stroke="var(--gridline)" />
@@ -197,7 +198,7 @@ export default function Analytics() {
                   type="monotone"
                   dataKey="revenue"
                   name="Revenue"
-                  stroke="var(--series-1)"
+                  stroke="var(--series-7)"
                   strokeWidth={2}
                   fill="url(#revFill)"
                 />
@@ -219,7 +220,7 @@ export default function Analytics() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="rounded-xl border border-hairline bg-surface-1 p-4">
             <div className="text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1">Lead Sources</div>
             <div className="text-[11px] text-ink-muted mb-3">All-time leads by source</div>

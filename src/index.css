@@ -10,7 +10,7 @@
   --color-ink-muted: var(--text-muted);
   --color-hairline: var(--gridline);
   --color-baseline: var(--baseline);
-  --color-accent: var(--series-1);
+  --color-accent: var(--brand);
   --color-status-good: var(--status-good);
   --color-status-warning: var(--status-warning);
   --color-status-serious: var(--status-serious);
@@ -20,17 +20,33 @@
 :root {
   color-scheme: light;
 
-  --surface-1: #fcfcfb;
-  --surface-2: #f9f9f7;
-  --surface-3: #f2f1ed;
-  --text-primary: #0b0b0b;
-  --text-secondary: #52514e;
-  --text-muted: #898781;
-  --gridline: #e1e0d9;
-  --baseline: #c3c2b7;
-  --border: rgba(11, 11, 11, 0.1);
+  --surface-1: #ffffff;
+  --surface-2: #f6f4fd;
+  --surface-3: #eee9fb;
+  --text-primary: #100c26;
+  --text-secondary: #55506e;
+  --text-muted: #918da8;
+  --gridline: #e7e3f6;
+  --baseline: #c9c2e8;
+  --border: rgba(16, 12, 38, 0.08);
   --success-text: #006300;
   --warning-text: #8a5a00;
+
+  /* Brand chrome: sidebar, buttons, active states — decorative, not data-encoding */
+  --brand: #7c3aed;
+  --brand-bg: rgba(124, 58, 237, 0.1);
+  --sidebar-from: #6d28d9;
+  --sidebar-to: #4c1d95;
+  --card-shadow: 0 8px 24px -8px rgba(76, 29, 149, 0.18);
+
+  --grad-purple-1: #8b5cf6;
+  --grad-purple-2: #6d28d9;
+  --grad-rose-1: #fb7185;
+  --grad-rose-2: #e11d48;
+  --grad-blue-1: #60a5fa;
+  --grad-blue-2: #2563eb;
+  --grad-orange-1: #fbbf24;
+  --grad-orange-2: #f97316;
 
   --series-1: #2a78d6; /* blue */
   --series-2: #eb6834; /* orange */
@@ -72,6 +88,12 @@
     --success-text: #0ca30c;
     --warning-text: #fab219;
 
+    --brand: #a78bfa;
+    --brand-bg: rgba(167, 139, 250, 0.16);
+    --sidebar-from: #4c1d95;
+    --sidebar-to: #2e1065;
+    --card-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.5);
+
     --series-1: #3987e5;
     --series-2: #d95926;
     --series-3: #199e70;
@@ -104,6 +126,13 @@
   --baseline: #383835;
   --border: rgba(255, 255, 255, 0.1);
   --success-text: #0ca30c;
+  --warning-text: #fab219;
+
+  --brand: #a78bfa;
+  --brand-bg: rgba(167, 139, 250, 0.16);
+  --sidebar-from: #4c1d95;
+  --sidebar-to: #2e1065;
+  --card-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.5);
 
   --series-1: #3987e5;
   --series-2: #d95926;

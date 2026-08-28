@@ -3,6 +3,7 @@ import { Handshake, DollarSign, Percent, Clock3 } from "lucide-react";
 import { useCrm } from "../context/CrmContext";
 import { PageHeader } from "../components/PageHeader";
 import { StatTile } from "../components/StatTile";
+import { StatRow } from "../components/StatRow";
 import { LeadTable } from "../components/LeadTable";
 import { LeadDetail } from "../components/LeadDetail";
 import { formatCurrency, formatDate } from "../lib/format";
@@ -57,13 +58,13 @@ export default function FinalizeDeal() {
   return (
     <div>
       <PageHeader title="Finalize Deal" subtitle="Close out opportunities and hand off won projects to execution" />
-      <div className="px-8 pb-10">
-        <div className="grid grid-cols-4 gap-4 mb-6">
+      <div className="px-4 sm:px-6 md:px-8 pb-10">
+        <StatRow>
           <StatTile label="Closed This Month" value={String(stats.closedThisMonth)} icon={Handshake} sub="won + lost" />
           <StatTile label="Win Rate" value={`${Math.round(stats.winRate)}%`} icon={Percent} sub="all-time" />
           <StatTile label="Total Won Value" value={formatCurrency(stats.totalWonValue)} icon={DollarSign} sub="all-time" />
           <StatTile label="Avg. Sales Cycle" value={`${stats.avgCycle}d`} icon={Clock3} sub="lead to close" />
-        </div>
+        </StatRow>
 
         <div className="mb-3 text-xs font-semibold text-ink-muted uppercase tracking-wide">Ready to Close</div>
         <div className="mb-8">
@@ -76,7 +77,7 @@ export default function FinalizeDeal() {
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div>
             <div className="mb-3 text-xs font-semibold text-ink-muted uppercase tracking-wide">Recently Won</div>
             <div className="rounded-xl border border-hairline bg-surface-1 divide-y divide-[var(--gridline)]">
